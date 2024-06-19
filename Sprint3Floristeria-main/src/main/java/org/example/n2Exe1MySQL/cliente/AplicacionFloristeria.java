@@ -35,6 +35,7 @@ public class AplicacionFloristeria {
         float precio = Input.inputFloat("Dime el precio:");
         float altura = Input.inputFloat("Dime la altura:");
         int cantidad = Input.inputInt("Dime la cantidad:");
+        System.out.println("Arbol " + nombre + "  creado correctamente.");
         return new Producto_Arbol(floristeria.consultarSiguienteProductoID(), nombre, precio, altura, cantidad);
     }
 
@@ -43,7 +44,9 @@ public class AplicacionFloristeria {
         float precio = Input.inputFloat("Dime el precio:");
         String color = Input.inputString("Dime el color:");
         int cantidad = Input.inputInt("Dime la cantidad:");
+        System.out.println("Flor " + nombre + "  creada correctamente.");
         return new Producto_Flor(floristeria.consultarSiguienteProductoID(), nombre, precio, color, cantidad);
+
     }
 
     public static Producto_Decoracion crearDecoracion() {
@@ -51,6 +54,7 @@ public class AplicacionFloristeria {
         float precio = Input.inputFloat("Dime el precio:");
         Material material = Input.inputEnum("Dime el material (madera o plastico)", Material.class);
         int cantidad = Input.inputInt("Dime la cantidad:");
+        System.out.println("Decoración " + nombre + " creada correctamente.");
         return new Producto_Decoracion(floristeria.consultarSiguienteProductoID(), nombre, precio, material, cantidad);
     }
 
@@ -71,41 +75,67 @@ public class AplicacionFloristeria {
         consultarDecoracion(floristeria.consultarListaProductosPorTipo("decoracion"));
     }
 
+
     private static void consultarArbol(HashMap<Integer, Producto> stockArbol) {
         System.out.println("*** ARBOL ***:\n");
-        stockArbol.values().forEach(producto -> {
-            Producto_Arbol productoArbol = (Producto_Arbol) producto;
-            System.out.println("ID: " + productoArbol.getProductoID()
-                    + " | Cantidad: " + productoArbol.getProductoCantidad()
-                    + " | Nombre: " + productoArbol.getProductoNombre()
-                    + " | Altura: " + productoArbol.getArbolAltura()
-                    + " | Precio: " + productoArbol.getProductoPrecio());
-        });
+
+        boolean hayProductos = (stockArbol != null && !stockArbol.isEmpty());
+
+        if (!hayProductos) {
+            System.out.println("No hay productos de tipo ARBOL en el stock.");
+        } else {
+            stockArbol.values().forEach(producto -> {
+                Producto_Arbol productoArbol = (Producto_Arbol) producto;
+                System.out.println("ID: " + productoArbol.getProductoID()
+                        + " | Cantidad: " + productoArbol.getProductoCantidad()
+                        + " | Nombre: " + productoArbol.getProductoNombre()
+                        + " | Altura: " + productoArbol.getArbolAltura()
+                        + " | Precio: " + productoArbol.getProductoPrecio());
+            });
+        }
     }
+
+
 
     private static void consultarFlor(HashMap<Integer, Producto> stockFlor) {
         System.out.println("\n*** FLOR ***:\n");
-        stockFlor.values().forEach(producto -> {
-            Producto_Flor productoFlor = (Producto_Flor) producto;
-            System.out.println("ID: " + productoFlor.getProductoID()
-                    + " | Cantidad: " + productoFlor.getProductoCantidad()
-                    + " | Nombre: " + productoFlor.getProductoNombre()
-                    + " | Color: " + productoFlor.getFlorColor()
-                    + " | Precio: " + productoFlor.getProductoPrecio());
-        });
+
+        boolean hayProductos = (stockFlor != null && !stockFlor.isEmpty());
+
+        if (!hayProductos) {
+            System.out.println("No hay productos de tipo FLOR en el stock.");
+        } else {
+            stockFlor.values().forEach(producto -> {
+                Producto_Flor productoFlor = (Producto_Flor) producto;
+                System.out.println("ID: " + productoFlor.getProductoID()
+                        + " | Cantidad: " + productoFlor.getProductoCantidad()
+                        + " | Nombre: " + productoFlor.getProductoNombre()
+                        + " | Color: " + productoFlor.getFlorColor()
+                        + " | Precio: " + productoFlor.getProductoPrecio());
+            });
+        }
     }
+
 
     private static void consultarDecoracion(HashMap<Integer, Producto> stockDecoracion) {
         System.out.println("\n*** DECORACION ***:\n");
-        stockDecoracion.values().forEach(producto -> {
-            Producto_Decoracion productoDecoracion = (Producto_Decoracion) producto;
-            System.out.println("ID: " + productoDecoracion.getProductoID()
-                    + " | Cantidad: " + productoDecoracion.getProductoCantidad()
-                    + " | Nombre: " + productoDecoracion.getProductoNombre()
-                    + " | Material: " + productoDecoracion.getDecoracionMaterial()
-                    + " | Precio: " + productoDecoracion.getProductoPrecio());
-        });
+
+        boolean hayProductos = (stockDecoracion != null && !stockDecoracion.isEmpty());
+
+        if (!hayProductos) {
+            System.out.println("No hay productos de tipo DECORACION en el stock.");
+        } else {
+            stockDecoracion.values().forEach(producto -> {
+                Producto_Decoracion productoDecoracion = (Producto_Decoracion) producto;
+                System.out.println("ID: " + productoDecoracion.getProductoID()
+                        + " | Cantidad: " + productoDecoracion.getProductoCantidad()
+                        + " | Nombre: " + productoDecoracion.getProductoNombre()
+                        + " | Material: " + productoDecoracion.getDecoracionMaterial()
+                        + " | Precio: " + productoDecoracion.getProductoPrecio());
+            });
+        }
     }
+
 
     public static void consultarValorTotalStock() {
         float valorTotal = floristeria.consultarValorTotalInventario();
