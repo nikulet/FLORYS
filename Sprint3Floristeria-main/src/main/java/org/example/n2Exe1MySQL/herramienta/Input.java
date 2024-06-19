@@ -4,8 +4,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Input {
-	
-	private static final Scanner input = new Scanner(System.in); 
+
+	private static final Scanner input = new Scanner(System.in);
 	private static final String INT_FORMAT_ERR_MSG = "There is a format error on your response. Enter a integer";
 	private static final String DOUBLE_FORMAT_ERR_MSG = "There is a format error on your response. Enter a double";
 	private static final String FLOAT_FORMAT_ERR_MSG = "There is a format error on your response. Enter a float";
@@ -15,7 +15,7 @@ public class Input {
 
 	private static final String ENUM_FORMAT_ERR_MSG = "There is a format error on your response. Enter 'madera' or 'plastico'";
 
-	
+
 	public static byte inputByte (String pregunta) {
 		byte response = 0;
 		boolean okey = false;
@@ -31,7 +31,7 @@ public class Input {
 		} while (!okey);
 		return response;
 	}
-	
+
 	public static int inputInt (String pregunta) {
 		int response = 0;
 		boolean okey = false;
@@ -47,7 +47,7 @@ public class Input {
 		} while (!okey);
 		return response;
 	}
-	
+
 	public static String inputString (String pregunta) {
 		String response = "";
 		boolean okey = false;
@@ -55,19 +55,19 @@ public class Input {
 			System.out.println(pregunta);
 			try {
 				response = input.nextLine();
-				if (response.isEmpty()) { 
-					throw new Exception(EMPTY_STRING_ERR_MSG); 
+				if (response.isEmpty()) {
+					throw new Exception(EMPTY_STRING_ERR_MSG);
 				} else {
-					
-				okey = true;
+
+					okey = true;
 				}
 			} catch (Exception ex) {
 				System.err.println(ex.getMessage());
 			}
 		} while (!okey);
-		return response;	
+		return response;
 	}
-	
+
 	public static double inputDouble (String pregunta) {
 		double response = 0.0;
 		boolean okey = false;
@@ -80,10 +80,10 @@ public class Input {
 				System.err.println(DOUBLE_FORMAT_ERR_MSG);
 			}
 			input.nextLine();
-		} while (!okey);		
-		return response;	
+		} while (!okey);
+		return response;
 	}
-	
+
 	public static float inputFloat (String pregunta) {
 		float response = 0.0F;
 		boolean okey = false;
@@ -96,36 +96,36 @@ public class Input {
 				System.err.println(FLOAT_FORMAT_ERR_MSG);
 			}
 			input.nextLine();
-		} while (!okey);		
-		return response;	
+		} while (!okey);
+		return response;
 	}
-	
+
 	public static boolean inputSiNo (String pregunta) {
-        boolean booleanResponse = false;
-        boolean okey = false;
-        String userResponse = "";
+		boolean booleanResponse = false;
+		boolean okey = false;
+		String userResponse = "";
 
-        do {
-            System.out.println(pregunta);
-            try {
-                userResponse = input.nextLine().toUpperCase();
-                if (userResponse.charAt(0) == 'S') {
-                    booleanResponse = true;
-                    okey = true;
-                } else if (userResponse.charAt(0) == 'N') {
-                    booleanResponse = false;
-                    okey = true;
-                } else {
-                	throw new Exception(YES_NO_ERR_MSG);
-                }
-            } catch (Exception ex) {
-                System.err.println(ex.getMessage());
-            }
-        } while (!okey);
-        return booleanResponse;
-	 }
+		do {
+			System.out.println(pregunta);
+			try {
+				userResponse = input.nextLine().toUpperCase();
+				if (userResponse.charAt(0) == 'S') {
+					booleanResponse = true;
+					okey = true;
+				} else if (userResponse.charAt(0) == 'N') {
+					booleanResponse = false;
+					okey = true;
+				} else {
+					throw new Exception(YES_NO_ERR_MSG);
+				}
+			} catch (Exception ex) {
+				System.err.println(ex.getMessage());
+			}
+		} while (!okey);
+		return booleanResponse;
+	}
 
-	public static Material inputEnum(String pregunta, Class<Material> materialClass) {
+	public static Material inputEnum(String pregunta) {
 		Material response = null;
 		boolean okey = false;
 		String userResponse = "";
@@ -147,6 +147,26 @@ public class Input {
 			}
 		} while (!okey);
 
+		return response;
+	}
+	public static String inputBaseDeDatos (String pregunta) {
+		String response = "";
+		boolean okey = false;
+		do {
+			System.out.println(pregunta);
+			response = input.nextLine();
+			try {
+				if (response.isEmpty()|| (!response.equalsIgnoreCase("Mongodb")&&!response.equalsIgnoreCase("MySQL"))) {
+					throw new Exception(EMPTY_STRING_ERR_MSG);
+				}
+				else {
+					okey = true;
+					System.out.println("Base de datos no encontrada");
+				}
+			} catch (Exception ex) {
+				System.err.println(ex.getMessage());
+			}
+		} while (!okey);
 		return response;
 	}
 

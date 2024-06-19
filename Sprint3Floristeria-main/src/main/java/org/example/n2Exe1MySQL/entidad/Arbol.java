@@ -1,15 +1,16 @@
 package org.example.n2Exe1MySQL.entidad;
 
-public class Producto_Arbol extends Producto {
-	
+
+public class Arbol extends Producto {
+
 	private static final long serialVersionUID = 1L;
 	private float arbolAltura;
 
-	public Producto_Arbol(int productoID, String productoNombre, float productoPrecio, float arbolAltura, int productoCantidad) {
+	public Arbol(int productoID, String productoNombre, float productoPrecio, float arbolAltura, int productoCantidad) {
 		super(productoID, productoNombre, productoPrecio, productoCantidad);
 		this.arbolAltura = arbolAltura;
-		super.setProductoTipo("Arbol");
-		
+		super.setProductoTipo("Árbol");
+
 	}
 
 	public float getArbolAltura() {

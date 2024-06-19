@@ -8,6 +8,7 @@ import org.example.n2Exe1MySQL.herramienta.Material;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Locale;
+import java.sql.ResultSet;
 
 public class MySQLDB implements InterfaceBaseDeDatos {
     private static MySQLDB instancia;
@@ -142,18 +143,18 @@ public class MySQLDB implements InterfaceBaseDeDatos {
                     case "arbol" -> {
                         String insertarArbol = String.format(Locale.US,
                                 "INSERT INTO arbol VALUES (%d, %f)",
-                                producto.getProductoID(), ((Producto_Arbol) producto).getArbolAltura());
+                                producto.getProductoID(), ((Arbol) producto).getArbolAltura());
                         stmt.executeUpdate(insertarArbol);
                     }
                     case "flor" -> {
                         String insertarFlor = String.format(Locale.US,
                                 "INSERT INTO flor VALUES (%d, '%s')",
-                                producto.getProductoID(), ((Producto_Flor) producto).getFlorColor());
+                                producto.getProductoID(), ((Flor) producto).getFlorColor());
                         stmt.executeUpdate(insertarFlor);
                     }
                     case "decoracion" -> {
                         String insertarDecoracion = String.format("INSERT INTO decoracion VALUES (%d,'%s')",
-                                producto.getProductoID(), ((Producto_Decoracion) producto).getDecoracionMaterial());
+                                producto.getProductoID(), ((Decoracion) producto).getDecoracionMaterial());
                         stmt.executeUpdate(insertarDecoracion);
                     }
                 }
@@ -294,11 +295,11 @@ public class MySQLDB implements InterfaceBaseDeDatos {
             String tipo = rs.getString("tipo").toLowerCase();
             int id = rs.getInt("id");
             Producto producto = switch (tipo) {
-                case "arbol" -> new Producto_Arbol(id, rs.getString("nombre"), rs.getFloat("precio"),
+                case "arbol" -> new Arbol(id, rs.getString("nombre"), rs.getFloat("precio"),
                         (float) rs.getInt("cantidad"), (int) rs.getFloat("altura"));
-                case "flor" -> new Producto_Flor(id, rs.getString("nombre"), rs.getFloat("precio"),
+                case "flor" -> new Flor(id, rs.getString("nombre"), rs.getFloat("precio"),
                         rs.getString("color"), rs.getInt("cantidad"));
-                case "decoracion" -> new Producto_Decoracion(id, rs.getString("nombre"), rs.getFloat("precio"),
+                case "decoracion" -> new Decoracion(id, rs.getString("nombre"), rs.getFloat("precio"),
                         Material.valueOf(rs.getString("material")), rs.getInt("cantidad"));
                 default -> throw new IllegalStateException("Unexpected value: " + tipo);
             };
