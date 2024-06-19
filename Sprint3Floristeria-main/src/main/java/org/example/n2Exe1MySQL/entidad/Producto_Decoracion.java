@@ -2,12 +2,12 @@ package org.example.n2Exe1MySQL.entidad;
 
 import org.example.n2Exe1MySQL.herramienta.Material;
 
-public class Decoracion extends Producto {
-
+public class Producto_Decoracion extends Producto {
+	
 	private static final long serialVersionUID = 1L;
 	private Enum<Material> decoracionMaterial;
-
-	public Decoracion(int productoID, String productoNombre, float productoPrecio, Enum<Material> decoracionMaterial, int productoCantidad) {
+	
+	public Producto_Decoracion(int productoID, String productoNombre, float productoPrecio, Enum<Material> decoracionMaterial, int productoCantidad) {
 		super(productoID, productoNombre, productoPrecio, productoCantidad);
 		this.decoracionMaterial = decoracionMaterial;
 		super.setProductoTipo("Decoracion");
@@ -20,7 +20,7 @@ public class Decoracion extends Producto {
 	public void setDecoracionMaterial(Enum<Material> decoracionMaterial) {
 		this.decoracionMaterial = decoracionMaterial;
 	}
-
+	
 	@Override
 	public String toString() {
 		return super.toString() + ", Material=" + decoracionMaterial + "]";

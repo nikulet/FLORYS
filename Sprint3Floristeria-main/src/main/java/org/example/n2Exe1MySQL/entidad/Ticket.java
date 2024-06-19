@@ -61,7 +61,7 @@ public class Ticket implements Serializable {
 		return productosVendidos;
 	}
 
-	public float calcularValorTotalDelTicket() {
+	public float calcularValorTotalDelTicket() {		
 		return (float) productosVendidos.values().stream().mapToDouble(producto -> producto.getProductoPrecio() * producto.getProductoCantidad()).sum();
 	}
 

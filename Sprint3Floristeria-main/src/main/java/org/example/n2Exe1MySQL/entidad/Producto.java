@@ -14,7 +14,7 @@ public abstract class Producto implements Serializable, Cloneable {
 
 	private int productoCantidad;
 
-
+	
 	public Producto(int productoID, String productoNombre, float productoPrecio, int cantidad) {
 		this.productoID = productoID;
 		this.productoNombre = productoNombre;
@@ -22,7 +22,7 @@ public abstract class Producto implements Serializable, Cloneable {
 		this.productoCantidad = cantidad;
 		//proximoID++;
 	}
-
+	
 	public int getProductoID() {
 		return productoID;
 	}
@@ -57,7 +57,7 @@ public abstract class Producto implements Serializable, Cloneable {
 	public void setProductoCantidad(int productoCantidad) {
 		this.productoCantidad = productoCantidad;
 	}
-
+	
 	/*public static int getProximoID() {
 		return proximoID;
 	}
@@ -69,34 +69,34 @@ public abstract class Producto implements Serializable, Cloneable {
 	public void reducirProductoCantidad(int cantidad) {
 		productoCantidad = productoCantidad - cantidad;
 	}
-
+	
 	public void reducirProductoCantidadUnidad() {
 		productoCantidad--;
 	}
-
+	
 	public void incrementarProductoCantidadUnidad() {
 		productoCantidad++;
 	}
-
+	
 	public void resetProductoCantidad() {
 		productoCantidad = 0;
 	}
-
+	
 	public Producto clonar () {
 		Producto pcopia = (Producto) this.clone();
 		return pcopia;
 	}
-
-	public Object clone(){
-		Object obj=null;
-		try{
-			obj=super.clone();
-		}catch(CloneNotSupportedException ex){
-			System.out.println(" no se puede duplicar");
-		}
-		return obj;
-	}
-
+	
+    public Object clone(){
+        Object obj=null;
+        try{
+            obj=super.clone();
+        }catch(CloneNotSupportedException ex){
+            System.out.println(" no se puede duplicar");
+        }
+        return obj;
+    }
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
